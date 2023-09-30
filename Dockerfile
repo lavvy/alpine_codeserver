@@ -1,5 +1,5 @@
-FROM martinussuherman/alpine:3.13-amd64-glibc
-#FROM alpine:3.13
+#FROM martinussuherman/alpine:3.13-amd64-glibc
+FROM alpine:3.13
 ARG PB_VERSION=0.18.9
 ENV \
    # container/su-exec UID \
@@ -30,8 +30,8 @@ RUN \
    gnupg \
    nodejs \
    openssh-client \
-  # gcompat \
-  # libstdc++
+   gcompat \
+   libstdc++
 
 RUN \
    wget https://github.com/cdr/code-server/releases/download/v$VERSION/code-server-$VERSION-linux-amd64.tar.gz && \
@@ -51,6 +51,7 @@ RUN mkdir -p /pb/pb_hooks
 
 # install flycl
 RUN curl -L https://fly.io/install.sh | sh
+RUN cp /root/.fly/bin/* /bin
 
 EXPOSE 80
 ENTRYPOINT ["entrypoint-su-exec", "code-server"]
