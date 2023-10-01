@@ -58,7 +58,7 @@ RUN \
 
    gnupg \
 
-   nodejs nginx unzip ca-certificates docker openssh-client nano gcompat libstdc++  #when u replace glibc image
+   nodejs nginx unzip ca-certificates s6 docker openssh-client nano gcompat libstdc++  #when u replace glibc image
 
 
 
@@ -100,7 +100,7 @@ RUN curl -L https://fly.io/install.sh | sh
 
 RUN cp /root/.fly/bin/* /bin
 
-
+VOLUME /
 
 EXPOSE 8080
 
