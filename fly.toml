@@ -1,41 +1,33 @@
-# fly.toml file generated for chikitsa on 2023-05-07T21:00:39Z
+# fly.toml app configuration file generated for vscody on 2023-10-01T01:04:40Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "codeserver"
+app = "vscody"
+primary_region = "atl"
 kill_signal = "SIGINT"
-kill_timeout = 5
-processes = []
+kill_timeout = "5s"
 
-[env]
-
-[experimental]
-  allowed_public_ports = []
-  auto_rollback = true
+[build]
 
 [[mounts]]
-  destination = "/var/lib/mysql"
-  source = "data"
+  source = "disk"
+  destination = "/"
 
 [[services]]
-  http_checks = []
-  internal_port = 80
-  processes = ["app"]
   protocol = "tcp"
-  script_checks = []
+  internal_port = 8080
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 8080
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
   [services.concurrency]
+    type = "connections"
     hard_limit = 25
     soft_limit = 20
-    type = "connections"
-
-  [[services.ports]]
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
-
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
