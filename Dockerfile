@@ -1,7 +1,7 @@
 #FROM martinussuherman/alpine:3.13-amd64-glibc    vscody f6aeb74baa96855e41f1d878
 
-FROM alpine:3.13
-
+#FROM alpine:3.13
+FROM alpine:3.17
 ARG PB_VERSION=0.18.9
 
 ENV \
@@ -32,7 +32,8 @@ ENV \
 
    # code-server version \
 
-   VERSION=3.12.0
+   #VERSION=3.12.0
+   VERSION=4.17.1
 
 
 
