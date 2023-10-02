@@ -1,7 +1,7 @@
 #FROM martinussuherman/alpine:3.13-amd64-glibc    vscody f6aeb74baa96855e41f1d878
 
 #FROM alpine:3.13
-FROM alpine:3.17
+FROM alpine:3.14
 ARG PB_VERSION=0.18.9
 
 ENV \
@@ -101,7 +101,7 @@ RUN curl -L https://fly.io/install.sh | sh
 
 RUN cp /root/.fly/bin/* /bin
 
-VOLUME /
+VOLUME /root
 
 EXPOSE 8080
 
