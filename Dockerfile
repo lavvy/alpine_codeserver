@@ -33,7 +33,7 @@ ENV \
    # code-server version \
 
    #VERSION=3.12.0
-   VERSION=4.17.1
+   VERSION=4.0.0
 
 
 
