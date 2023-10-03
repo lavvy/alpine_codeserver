@@ -33,15 +33,15 @@ ENV \
    # code-server version \
 
    #VERSION=3.12.0
-   VERSION=4.0.0
+   VERSION=4.3.0
 
 
 
    
 
-#COPY code-server /usr/bin/
+COPY code-server /usr/bin/
 
-#RUN chmod +x /usr/bin/code-server
+RUN chmod +x /usr/bin/code-server
 
 
 
@@ -65,7 +65,7 @@ RUN \
 
 RUN \
 
-   wget https://github.com/cdr/code-server/releases/download/v$VERSION/code-server-$VERSION-linux-amd64.tar.gz && \
+   wget https://github.com/coder/code-server/releases/download/v$VERSION/code-server-$VERSION-linux-amd64.tar.gz && \
 
    tar x -zf code-server-$VERSION-linux-amd64.tar.gz && \
 
@@ -107,9 +107,9 @@ EXPOSE 8080
 
 #ENTRYPOINT ["entrypoint-su-exec", "code-server"]
 
-#ENTRYPOINT ["code-server"]
+CMD ["code-server"]
 #CMD ["/usr/bin/code-server", "--bind-addr", "0.0.0.0:8080"]
 
-CMD ["/usr/lib/code-server/bin/code-server", "--bind-addr", "0.0.0.0:8080"]
+#CMD ["/usr/lib/code-server/bin/code-server", "--bind-addr", "0.0.0.0:8080"]
 
 #CMD ["/pb/pocketbase","serve","--http=0.0.0.0:8080"]
