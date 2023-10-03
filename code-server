@@ -1,3 +1,39 @@
 #!/usr/bin/env sh
 
-exec /usr/lib/code-server/bin/code-server "$@"
+#exec /usr/lib/code-server/bin/code-server "$@"
+#exec /pb/pocketbase serve "$@"
+#exec touch /root/okoo & 
+
+#nginx -g 'daemon off;' &
+
+#/usr/lib/code-server/bin/code-server --bind-addr 0.0.0.0:8081
+
+cat <<EOF > /etc/nginx/http.d/default.conf
+server {
+        listen 8080 default_server;
+        listen [::]:8080 default_server;
+
+        # Everything is a 404
+        location / {
+                proxy_pass http://0.0.0.0:8081;
+     proxy_set_header Host \$host;
+      proxy_set_header Upgrade \$http_upgrade;
+      proxy_set_header Connection upgrade;
+}
+
+        location ~ /pb/(.*) {
+                proxy_pass http://0.0.0.0:8090/\$1;
+     proxy_set_header Host \$host;
+      proxy_set_header Upgrade \$http_upgrade;
+      proxy_set_header Connection upgrade;
+}
+}
+EOF
+
+nginx -g 'daemon off;' &
+
+#nginx -s reload; &
+
+nohup /pb/pocketbase serve >/dev/null &
+
+/usr/lib/code-server/bin/code-server --bind-addr 0.0.0.0:8081
