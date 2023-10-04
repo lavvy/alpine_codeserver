@@ -101,7 +101,7 @@ RUN curl -L https://fly.io/install.sh | sh
 
 RUN cp /root/.fly/bin/* /bin
 
-VOLUME /root
+VOLUME /pb
 
 EXPOSE 8080
 
