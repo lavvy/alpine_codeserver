@@ -82,18 +82,17 @@ RUN \
    sed -i 's/"$ROOT\/lib\/node"/node/g'  /usr/lib/code-server/bin/code-server
 
 
+VOLUME /root
 
 # download and unzip PocketBase
 
 ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
 
-RUN mkdir -p /root/pb
+#RUN unzip /tmp/pb.zip -d /root/
 
-RUN unzip /tmp/pb.zip -d /root/pb/
+#RUN mkdir -p /root/pb/pb_migrations/
 
-RUN mkdir -p /root/pb/pb_migrations
-
-RUN mkdir -p /root/pb/pb_hooks
+#RUN mkdir -p /root/pb/pb_hooks/
 
 
 
@@ -103,7 +102,7 @@ RUN curl -L https://fly.io/install.sh | sh
 
 RUN cp /root/.fly/bin/* /bin
 
-VOLUME /root
+
 
 EXPOSE 8080
 
