@@ -13,16 +13,11 @@ server {
         listen 8080 default_server;
         listen [::]:8080 default_server;
 
-        # Everything is a 404
+        location ~ /pb/(.*) {
+                proxy_pass http://0.0.0.0:8090/\$1/;     
+}
         location / {
                 proxy_pass http://0.0.0.0:8081;
-     proxy_set_header Host \$host;
-      proxy_set_header Upgrade \$http_upgrade;
-      proxy_set_header Connection upgrade;
-}
-
-        location ~ /pb/(.*) {
-                proxy_pass http://0.0.0.0:8090/\$1;
      proxy_set_header Host \$host;
       proxy_set_header Upgrade \$http_upgrade;
       proxy_set_header Connection upgrade;
