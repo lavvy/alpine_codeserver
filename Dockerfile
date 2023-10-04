@@ -87,11 +87,13 @@ RUN \
 
 ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
 
-RUN unzip /tmp/pb.zip -d /pb/
+RUN mkdir -p /root/pb
 
-RUN mkdir -p /pb/pb_migrations
+RUN unzip /tmp/pb.zip -d /root/pb/
 
-RUN mkdir -p /pb/pb_hooks
+RUN mkdir -p /root/pb/pb_migrations
+
+RUN mkdir -p /root/pb/pb_hooks
 
 
 
@@ -101,7 +103,7 @@ RUN curl -L https://fly.io/install.sh | sh
 
 RUN cp /root/.fly/bin/* /bin
 
-VOLUME /pb
+VOLUME /root
 
 EXPOSE 8080
 
