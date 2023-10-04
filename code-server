@@ -29,6 +29,6 @@ nginx -g 'daemon off;' &
 
 #nginx -s reload; &
 
-nohup /pb/pocketbase serve >/dev/null &
+nohup /root/pb/pocketbase serve >/dev/null &
 
 /usr/lib/code-server/bin/code-server --bind-addr 0.0.0.0:8081
