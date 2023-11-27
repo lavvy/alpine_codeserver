@@ -47,7 +47,7 @@ nginx -g 'daemon off;' &
 mkdir -p /root/pb &
 
 mv /tmp/gitbucket.war -d /root/gitbucket.war &
-nohup java -jar gitbucket.war --port=3000 --prefix=/git >/dev/null &
+nohup java -jar /root/gitbucket.war --port=3000 --prefix=/git >/dev/null &
 mv /tmp/gitbucket-ci-plugin-1.11.0.jar -d /root/.gitbucket/plugins/gitbucket-ci-plugin-1.11.0.jar &
 
 unzip /tmp/pb.zip -d /root/pb &
