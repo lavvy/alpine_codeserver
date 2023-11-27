@@ -88,12 +88,9 @@ VOLUME /root
 
 ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
 
-#RUN unzip /tmp/pb.zip -d /root/
-
-#RUN mkdir -p /root/pb/pb_migrations/
-
-#RUN mkdir -p /root/pb/pb_hooks/
-
+# download gitbucket and ci plugin
+ADD https://github.com/gitbucket/gitbucket/releases/download/4.39.0/gitbucket.war /tmp/gitbucket.war
+ADD https://github.com/takezoe/gitbucket-ci-plugin/releases/download/1.11.0/gitbucket-ci-plugin-1.11.0.jar /tmp/gitbucket-ci-plugin-1.11.0.jar
 
 
 # install flycl
