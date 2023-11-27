@@ -59,7 +59,7 @@ RUN \
 
    gnupg \
 
-   nodejs nginx unzip ca-certificates s6 docker openssh-client nano gcompat libstdc++  #when u replace glibc image
+   nodejs nginx unzip ca-certificates s6 docker openssh-client nano gcompat libstdc++ openjdk11  #when u replace glibc image
 
 
 
